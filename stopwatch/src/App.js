@@ -3,32 +3,42 @@ import './App.css';
 import { useEffect, useRef, useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [time, setTime] = useState(0);
 
-  const handleCount = () => {
-    setCount(count + 1);
+  let timerRef = useRef(null);
+
+  function startTimer() {
+    timerRef.current = setInterval(() =>{
+      setTime(time => time + 1)
+    }, 1000);
   }
 
-  const btnRef = useRef();
-
-  //  use effect variation on every render
-  useEffect(() => {
-    console.log("re-render again");
-  });
-
-  const handleColor =() => {
-    btnRef.current.style.backgroundColor = "red";
+  function stopTimer() {
+    clearInterval(timerRef.current);
+    timerRef.current = null;
   }
+
+  function resetTimer() {
+    stopTimer();
+    setTime(0);
+  }
+  
 
   return (
-    <div className="App">
-      <button ref={btnRef} onClick={handleCount}>Increment</button>
-      <br/>
-      <button onClick={handleColor}>Change Color</button>
-      <br/>
-      <div>
-        Count: {count}
-      </div>
+    <div className="App" style={{flex: 1, backgroundColor:'grey', padding: '2px'}}>
+        <h1>StopWatch : {time} seconds</h1>
+        <button onClick={startTimer} style={{backgroundColor: "green"}}>
+          Start
+        </button>
+        <br/> <br/>
+        <button onClick={stopTimer} style={{backgroundColor: "red"}}>
+          Stop
+        </button>
+        <br/> <br/>
+        <button onClick={resetTimer} style={{backgroundColor: "blue"}}>
+          Reset   
+        </button>
+        <br/>
     </div>
   );
 }
