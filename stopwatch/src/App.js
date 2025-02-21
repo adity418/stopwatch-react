@@ -1,35 +1,28 @@
-import logo from './logo.svg';
+import ChildComponent from './components/ChildComponent';
 import './App.css';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [input, setInput] = useState(0);
 
-  function expexsiveTask(num) {
-    console.log("task");
-    for(let i=0; i<=10; i++){}
-    return num*2;
-  }
-
-  let doubleValue = useMemo(() => expexsiveTask(input), [input]);
+  const handleClick = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
 
   return (
-    <div className="App">
-      <button  onClick={() => 
-    setCount(count + 1)}>Increment</button>
-      
+    <div className="App">    
       <div>
         Count: {count}
       </div>
-      <input 
-        type='number'
-        placeholder='enter number'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
+      <br/> <br/>
       <div>
-        Double: {doubleValue}
+        <button  onClick={handleClick}>
+          Increment
+        </button>
+      </div>
+      <br/> <br/>      
+      <div>
+        <ChildComponent buttonName='Click me'/>
       </div>
     </div>
   );
