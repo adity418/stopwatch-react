@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.css"; 
 import MoviePlaylist from "./components/MoviePlaylist";
 import SongPlaylist from "./components/SongPlaylist";
 
