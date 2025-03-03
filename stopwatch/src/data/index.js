@@ -5,6 +5,6 @@ export const createRandomMovie = () => {
     return `${faker.word.adjective()} ${faker.word.noun()}`;
 };
 
-export const createRandonSong =() => {
+export const createRandomSong = () => {
     return faker.music.songName();
 };

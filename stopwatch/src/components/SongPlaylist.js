@@ -1,12 +1,11 @@
 import { useDispatch , useSelector } from "react-redux";
-import { createRandonSong } from "../data";
+import { createRandomSong } from "../data";
 import { addSong, removeSong } from '../store';
 
 function SongPlaylist() {
     const dispatch = useDispatch();
     
     const songPlaylist = useSelector((state) => {
-        console.log(state);
         return state.songs;  
     });
 
@@ -23,7 +22,7 @@ function SongPlaylist() {
             <li key={song}>
                 {song}
                 <button
-                    onClick={handleSongRemove(song)}
+                    onClick={() => handleSongRemove(song)}
                     className="button is-danger"
                 >
                     X
@@ -38,7 +37,7 @@ function SongPlaylist() {
                 <h3 className="subtitle is-3">Song Playlist</h3>
                 <div className="buttons">
                     <button
-                        onClick={() => handleSongAdd(createRandonSong())}
+                        onClick={() => handleSongAdd(createRandomSong())}
                         className="button is-link"
                     >
                         + Add Song to Playlist

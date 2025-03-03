@@ -13,7 +13,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="container is-fluid">
       <button onClick={() => handleResetClick()} className="button is-danger">
         Reset Both Playlists
       </button>
